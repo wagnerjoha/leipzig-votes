@@ -3,8 +3,8 @@ use std::fs::{read_to_string, File};
 use std::io::Write;
 use std::path::Path;
 
-use anyhow::{anyhow, Context, Error, Result};
-use geo::algorithm::proj::Proj;
+use anyhow::{Context, Result};
+// use geo::algorithm::proj::Proj;
 use geo::{Coord, LineString, Polygon};
 use geojson::{
     Feature, FeatureCollection, GeoJson, Geometry as GeoJsonGeom, Value as GeoJsonValue,
@@ -171,57 +171,6 @@ impl Vote {
         Some(VoteRecord::new(name_muni.to_string(), votes, polygon))
     }
 
-    pub fn convert_wgs84(&self) -> Result<Self> {
-        let from = "EPSG:32633";
-        let to = "EPSG:4326";
-
-        let converted_records: Vec<_> = self
-            .vote_records
-            .iter()
-            .map(|record| {
-                let converted_polygon = match &record.geometry {
-                    Some(polygon) => {
-                        // Convert exterior
-                        let converted_exterior: Result<LineString<f64>, Error> = polygon
-                            .exterior()
-                            .coords()
-                            .map(|coord| reproject_coord_wgs84(*coord, from, to))
-                            .collect::<Result<Vec<_>>>()
-                            .map(LineString::new);
-
-                        // Convert interiors
-                        let converted_interiors: Result<Vec<LineString<f64>>> = polygon
-                            .interiors()
-                            .iter()
-                            .map(|line| {
-                                line.coords()
-                                    .map(|coord| reproject_coord_wgs84(*coord, from, to))
-                                    .collect::<Result<Vec<_>>>()
-                                    .map(LineString::new)
-                            })
-                            .collect();
-
-                        match (converted_exterior, converted_interiors) {
-                            (Ok(ext), Ok(int)) => Ok(Some(Polygon::new(ext, int))),
-                            _ => Err(anyhow!("Failed to convert coordinates")),
-                        }
-                    }
-                    None => Ok(None),
-                };
-
-                VoteRecord::new(
-                    record.name_muni.clone(),
-                    record.votes.clone(),
-                    converted_polygon.unwrap(),
-                )
-            })
-            .collect();
-
-        Ok(Vote {
-            name: self.name.clone(),
-            vote_records: converted_records,
-        })
-    }
 }
 
 impl VoteRecord {
@@ -251,20 +200,4 @@ impl VoteRecord {
             })
             .collect()
     }
-}
-
-fn reproject_coord_wgs84(coord: Coord<f64>, from: &str, to: &str) -> Result<Coord<f64>> {
-    let ft_to_m = Proj::new_known_crs(from, to, None).unwrap();
-
-    let result = ft_to_m
-        .convert(Coord {
-            x: coord.x,
-            y: coord.y,
-        })
-        .unwrap();
-
-    Ok(Coord {
-        x: result.x,
-        y: result.y,
-    })
 }
