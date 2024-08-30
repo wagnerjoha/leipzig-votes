@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var map = L.map('map_lpz').setView([51.34, 12.39], 12);
+    var map = L.map('map_lpz', {
+      fullscreenControl: true,
+    }).setView([51.34, 12.39], 12);
 
     let geoJsonLayer;
     let geoJsonData;
