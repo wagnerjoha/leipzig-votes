@@ -1,0 +1,27 @@
+[[vote_sources]]
+url = "https://www.leipzig.de/buergerservice-und-verwaltung/wahlen-in-leipzig/stadtratswahlen/stadtratswahl-2024"
+name = "Leipzig_Stadtratswahl_2024"
+
+[vote_sources.party_map]
+E1 = "Die Linke"
+E2 = "Grüne"
+E3 = "CDU"
+E4 = "AfD"
+E5 = "SPD"
+E6 = "FDP"
+E7 = "Die Partei"
+E11 = "BSW"
+
+[[vote_sources]]
+url = "https://www.leipzig.de/buergerservice-und-verwaltung/wahlen-in-leipzig/europawahlen/europawahl-2024"
+name = "Leipzig_Europawahl_2024"
+
+[vote_sources.party_map]
+D1 = "AfD"
+D2 = "CDU"
+D3 = "Die Linke"
+D4 = "Grüne"
+D5 = "SPD"
+D6 = "FDP"
+D8 =  "Die Partei"
+D28 = "BSW"

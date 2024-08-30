@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ vote_name }} - Zusammenfassung nach Stadtteilen</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
+        h1, h2 { color: #333; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>{{ vote_name }}</h1>
+    {% for record in vote_records %}
+        <h2>{{ record.name_muni }}</h2>
+        <p>Gesamtstimmen: {{ record.total_votes }}</p>
+        <table>
+            <tr>
+                <th>Partei</th>
+                <th>Prozent</th>
+            </tr>
+            {% for (party, percentage) in record.vote_perc %}
+                <tr>
+                    <td>{{ party }}</td>
+                    <td>{{ percentage }}%</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endfor %}
+</body>
+</html>
