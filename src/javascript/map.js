@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const partyColorScales = {
       // continuous color from left to right
-      "AfD": chroma.scale(['#808080', '#4A2511']),
+      "AfD": chroma.scale(['#808080', '#79b7e1']),
       "BSW": chroma.scale(['#808080', '#ff944d']),
       "CDU": chroma.scale(['#808080', '#000000']),
       "Die Linke": chroma.scale(['#808080', '#ff0066']),
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function getPartyColor(party) {
       const colors = {
-          "AfD": "#4A2511",
+          "AfD": "#79b7e1",
           "BSW": "#FF8C00",
           "CDU": "#000000",
           "Die Linke": "#FF1493",
