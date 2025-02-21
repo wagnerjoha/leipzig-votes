@@ -29,7 +29,8 @@ pub fn app_views_factory(app: &mut ServiceConfig) {
 pub async fn map_view(data_source: &str) -> HttpResponse {
     println!("{}", data_source);
     let mut html_map = read_file("./templates/map.html");
-    let javascript_data = read_file("./src/javascript/map.js");
+    // change directory for deployment from ./scr/javascript/map.js
+    let javascript_data = read_file("./javascript/map.js");
 
     let filename = format!("const DATA_SOURCE = '{}';", data_source);
     html_map = html_map

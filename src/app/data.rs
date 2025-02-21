@@ -47,5 +47,12 @@ pub async fn get_data() -> Result<Vec<Vote>> {
 }
 
 pub fn read_file(file_path: &str) -> String {
-    fs::read_to_string(file_path).expect("Could not find html file for page rendering")
+    let cwd = std::env::current_dir()
+        .map(|p| p.display().to_string())
+        .unwrap_or_else(|_| "unknown".to_string());
+    let err_msg = format!(
+        "Could not find html file for page rendering: '{}' (running in directory: {})",
+        file_path, cwd
+    );
+    fs::read_to_string(file_path).expect(&err_msg)
 }

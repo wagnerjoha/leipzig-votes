@@ -1,8 +1,4 @@
-name = "leipzig-maps"
-
-deploy.include = ["assets/*", "data/*", "templates/*"]
-
 [build]
 assets = [
-"assets/*", "data/*", "templates/*"
+"assets/*", "data/*", "templates/*", "javascript/*"
 ]

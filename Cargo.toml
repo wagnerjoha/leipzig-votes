@@ -19,8 +19,8 @@ geojson = "0.24"
 reqwest = { version = "0.12", features = ["json", "rustls-tls"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-shuttle-runtime = "0.47"
-shuttle-actix-web = "0.47"
+shuttle-runtime = "0.52"
+shuttle-actix-web = "0.52"
 scraper = "0.19"
 toml ="0.8"
 tokio = { version = "1.0", features = ["full"] }
