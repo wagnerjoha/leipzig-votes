@@ -24,6 +24,10 @@ pub fn app_views_factory(app: &mut ServiceConfig) {
         "/maps/2024_Landtagswahl",
         web::get().to(|| map_view("Leipzig_Landtagswahl_2024")),
     );
+    app.route(
+        "/maps/2025_Bundestagswahl",
+        web::get().to(|| map_view("Bundestagswahl_Zweitstimme_2025")),
+    );
 }
 
 pub async fn map_view(data_source: &str) -> HttpResponse {

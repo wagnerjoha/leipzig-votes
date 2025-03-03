@@ -25,3 +25,17 @@ D5 = "SPD"
 D6 = "FDP"
 D8 =  "Die Partei"
 D28 = "BSW"
+
+[[vote_sources]]
+url = "https://wahlergebnis.leipzig.de/4/bt2025/14713000/daten/opendata/Open-Data-14713000-Bundestagswahl-Ortsteil.csv?ts=1740994679432"
+name = "Bundestagswahl_Zweitstimme_2025"
+
+[vote_sources.party_map]
+D1 = "AfD"
+D2 = "SPD"
+D3 = "CDU"
+D4 = "FDP"
+D5 = "Die Linke"
+D6 = "Die Grünen"
+D9 =  "Die Partei"
+D15 = "BSW"
